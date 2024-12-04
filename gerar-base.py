@@ -5,6 +5,7 @@ import os
 
 amostra = 1
 numeroAmostra = 5
+tamanho_imagem = 220,220
 
 id = input('Digite seu identificador: ')
 l, a = 220, 220
@@ -27,18 +28,19 @@ while amostra <= numeroAmostra:
     key = cv2.waitKey(1)
 
     if key == 27:
-        imagemFace = cv2.resize(frameCinza[y:y + a, x:x + l], (l, a))
-        cv2.imwrite("imagens/treinamento/ra" + id + "." + str(amostra) + ".jpg", imagemFace) #nome da imagem capturada
-        print("[ foto  capturada com sucesso ]")
+        imagemFace = cv2.resize(frameCinza[y:y + a, x:x + l], tamanho_imagem)
+        cv2.imwrite("imagens/treinamento/ra" + id + "." + str(amostra) + ".jpg", imagemFace)  # Salva a imagem
+        print("[foto capturada com sucesso]")
         print(imagemFace.shape)
 
-        amostra += 1 #tratativa do incremento
+        amostra += 1  # Incrementa após salvar a imagem
+
 
 cap.release()
 cv2.destroyAllWindows()
 
 face = cv2.resize(imagemFace, (60, 80))
-imagem_teste = "imagens/treinamento/ra" + id + "." + str(amostra) + ".jpg"
+imagem_teste = f"imagens/treinamento/ra{id}.{amostra - 1}.jpg"
 imagem = Image.open(imagem_teste).convert('L')
 imagem_np = np.array(imagem, 'uint8')
 print(imagem_np.shape)
