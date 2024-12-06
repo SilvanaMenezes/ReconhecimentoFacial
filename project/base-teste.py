@@ -21,7 +21,7 @@ while amostra <= numeroAmostra:
     frameCinza = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     facesDetectadas = classificadorFace.detectMultiScale(frameCinza)
     for (x, y, l, a) in facesDetectadas:
-        cv2.rectangle(frame, (x, y), (x + l, y + a), (121,29,237), 2)
+        cv2.rectangle(frame, (x, y), (x + l, y + a), (0,0,255), 2)
 
     cv2.imshow("frame", frame)
     key = cv2.waitKey(1)
@@ -61,9 +61,8 @@ for i in range(0, deteccoes.shape[2]):
         roi = imagem_cp[start_y:end_y, start_x:end_x]
         text = "{:.2f}%".format(confianca * 100)
         cv2.putText(imagem, text, (start_x, start_y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 255, 0), 2)
-        cv2.rectangle(imagem, (start_x, start_y), (end_x, end_y), (121,29,237), 2)
+        cv2.rectangle(imagem, (start_x, start_y), (end_x, end_y), (0,255,0), 2)
 face = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-
 
 def detecta_face(network, path_imagem, conf_min=0.7):
     imagem = Image.open(path_imagem).convert('L')
@@ -82,7 +81,7 @@ def detecta_face(network, path_imagem, conf_min=0.7):
             (start_x, start_y, end_x, end_y) = bbox.astype('int')
             roi = imagem[start_y:end_y, start_x:end_x]
             roi = cv2.resize(roi, (60, 80))
-            cv2.rectangle(imagem, (start_x, start_y), (end_x, end_y), (121,29,237), 2)
+            cv2.rectangle(imagem, (start_x, start_y), (end_x, end_y), (0,255,0), 2)
             face = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     return face, imagem
 

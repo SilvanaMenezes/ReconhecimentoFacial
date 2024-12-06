@@ -20,9 +20,9 @@ while (True):
         cv2.rectangle(imagem, (x, y), (x + l, y + a), (121,29,237), 2)
         id, confianca = reconhecedor.predict(imagemFace)
         nome = ""
-        if id == 1371392222015:
+        if id == 2222015:
             nome = 'Giuliana'
-        elif id == 1371392222033:
+        elif id == 2222033:
             nome = 'Silvana'
         else: nome = 'Não detectado'
 
